@@ -1,0 +1,527 @@
+newman
+
+assignment3
+
+❏ 1. Create a business (6 pts)
+↳ 1. add business 201 (2 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 377B, 262ms]
+  ✓  201 status code
+  ✓  content is valid
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Create a business Test 1 points = 2'
+  │ '******* Create a business Tests current points = 2'
+  └
+
+↳ 2. add business with missing attributes 400 (2 pts)
+  POST http://127.0.0.1:8080/businesses [400 BAD REQUEST, 259B, 3ms]
+  ✓  400 status code
+  ✓  400 error message
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Create a business Test 2 points = 2'
+  │ '******* Create a business Tests current points = 4'
+  └
+
+↳ 3. add second business 201 (2 points)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 375B, 229ms]
+  ✓  201 status code
+  ✓  content is valid
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Create a business Test 3 points = 2'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '******* Create a business Tests Total points = 6'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 2. Get a business (6 pts)
+↳ 1. get a business 200 (4 pts)
+  GET http://127.0.0.1:8080/businesses/16 [200 OK, 374B, 125ms]
+  ✓  200 status code
+  1. content is valid
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Get a business Test 1 points = 1'
+  │ '******* Get a business Tests current points = 1'
+  └
+
+↳ 2. get business with invalid id 404 (2 pts)
+  GET http://127.0.0.1:8080/businesses/0 [404 NOT FOUND, 230B, 105ms]
+  ✓  404 not found
+  ✓  404 error message
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Get a business Test 2 points = 2'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '******* Get a business Tests Total points = 3'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 3. List all businesses  with pagination (9 pts)
+↳ 1. add business for owner 1 201 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 377B, 240ms]
+  ✓  201 status code
+
+↳ 2. add 2nd business for owner 1 201 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 375B, 272ms]
+  ✓  201 status code
+
+↳ 3. add 3rd business for owner 1 201 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 375B, 226ms]
+  ✓  201 status code
+
+↳ 4. add 4th business for owner 1 201 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 375B, 229ms]
+  ✓  201 status code
+
+↳ 5. add 5th business for owner 1 201 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 375B, 323ms]
+  ✓  201 status code
+
+↳ 6. add business for owner 2 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 375B, 366ms]
+  ✓  201 status code
+
+↳ 7. add 2nd business for owner 2 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 375B, 285ms]
+  ✓  201 status code
+
+↳ 8. get 1st page of businesses (4 pts)
+  GET http://127.0.0.1:8080/businesses [200 OK, 996B, 298ms]
+  ✓  200 status code
+  ✓  The response content type is application.json
+  ✓  Exaclty 3 businesses on the page
+  ✓  Every business has all the required properties
+  ✓  The next link is correct
+  ┌
+  │ '******* List all businesses Test 8 points = 4'
+  │ '******* List all businesses Tests current points = 4'
+  └
+
+↳ 9. get 2nd page of businesses (4 pts)
+  GET http://127.0.0.1:8080/businesses?offset=3&limit=3 [200 OK, 992B, 259ms]
+  ✓  200 status code
+  ✓  The response content type is application.json
+  ✓  Exaclty 3 businesses on the page
+  ✓  Every business has all the required properties
+  ✓  The next link is correct
+  ┌
+  │ '******* List all businesses Test 9 points = 4'
+  │ '******* List all businesses Tests Current points = 8'
+  └
+
+↳ 10. get 3rd page of businesses (1 pt)
+  GET http://127.0.0.1:8080/businesses?offset=6&limit=3 [200 OK, 929B, 284ms]
+  ✓  200 status code
+  ✓  The response content type is application.json
+  ✓  At least one business on the page
+  ✓  Every business has all the required properties
+  ┌
+  │ '******* List all businesses Test 10 points = 1'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '******* List all businesses Tests Total points = 1'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+↳ 11. delete business 204 (0 pts)
+  DELETE http://127.0.0.1:8080/businesses/18 [204 NO CONTENT, 161B, 226ms]
+  ✓  204 no content
+  DELETE http://127.0.0.1:8080/businesses/19   DELETE http://127.0.0.1:8080/businesses/20   DELETE http://127.0.0.1:8080/businesses/21   DELETE http://127.0.0.1:8080/businesses/22   DELETE http://127.0.0.1:8080/businesses/23   DELETE http://127.0.0.1:8080/businesses/24 [204 NO CONTENT, 161B, 193ms]
+[204 NO CONTENT, 161B, 195ms]
+[204 NO CONTENT, 161B, 208ms]
+[204 NO CONTENT, 161B, 211ms]
+[204 NO CONTENT, 161B, 217ms]
+[204 NO CONTENT, 161B, 652ms]
+
+❏ 4. Edit a business (6 pts)
+↳ 1. edit business 200 (2 pts)
+  PUT http://127.0.0.1:8080/businesses/16 [200 OK, 380B, 236ms]
+  ✓  200 status code
+  ✓  content is valid
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Edit a business Test 1 points = 2'
+  │ '******* Edit a business Tests current points = 2'
+  └
+
+↳ 2. get business after update 200 (2 pts)
+  GET http://127.0.0.1:8080/businesses/16 [200 OK, 382B, 110ms]
+  ✓  200 status code
+  2. content is valid
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Edit a business Test 2 points = 1'
+  │ '******* Edit a business Tests current points = 3'
+  └
+
+↳ 3. edit business with missing attributes 400 (1 pt)
+  PUT http://127.0.0.1:8080/businesses/16 [400 BAD REQUEST, 259B, 4ms]
+  ✓  400 status code
+  ✓  400 error message
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Edit a business Test 3 points = 1'
+  │ '******* Edit a business Tests current points = 4'
+  └
+
+↳ 4. edit business with invalid id 404 (1 pt)
+  PUT http://127.0.0.1:8080/businesses/0 [404 NOT FOUND, 230B, 105ms]
+  ✓  404 not found
+  ✓  404 error message
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Edit a business Test 4 points = 1'
+  │ '******* Edit a business Tests Total points = 5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '******* Edit a business Tests Total points = 5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 5. Delete a business (6 pts)
+↳ 1. delete business 204 (2 pts)
+  DELETE http://127.0.0.1:8080/businesses/16 [204 NO CONTENT, 161B, 175ms]
+  ✓  204 no content
+  ┌
+  │ '******* Delete a business Test 1 points = 2'
+  │ '******* Delete a business Tests current points = 2'
+  └
+
+↳ 2. delete business just deleted 404 (2 pts)
+  DELETE http://127.0.0.1:8080/businesses/16 [404 NOT FOUND, 230B, 207ms]
+  ✓  404 not found
+  ✓  404 error message
+  ┌
+  │ '******* Delete a business Test 2 points = 2'
+  │ '******* Delete a business Tests current points = 4'
+  └
+
+↳ 3. delete second business 204 (2 pts)
+  DELETE http://127.0.0.1:8080/businesses/17 [204 NO CONTENT, 161B, 188ms]
+  ✓  204 no content
+  ┌
+  │ '******* Delete a business Test 3 points = 2'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '******* Deletee a business Tests Total points = 6'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 6. List businesses for owner (6 pts)
+↳ 1. add business for owner 1 201 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 377B, 279ms]
+  ✓  201 status code
+
+↳ 2. add 2nd business for owner 1 201 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 375B, 245ms]
+  ✓  201 status code
+
+↳ 3. add business for owner 2 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 375B, 225ms]
+  ✓  201 status code
+
+↳ 5. get all businesses for owner 1 (3 pts)
+  GET http://127.0.0.1:8080/owners/6789/businesses [200 OK, 625B, 110ms]
+  ✓  200 status code
+  ✓  At least 2 businesses for owner 1
+  ✓  Owner ID is correct for all businesses
+  ✓  Every business has all the required properties
+  ✓  The response content type is application.json
+  ┌
+  │ '******* List businesses for owner, Test 5 points = 3'
+  └
+
+↳ 6. get all businesses for owner 2 (3 pts)
+  GET http://127.0.0.1:8080/owners/7890/businesses [200 OK, 396B, 121ms]
+  ✓  200 status code
+  ✓  At least 1 business for owner 2
+  ✓  Owner ID is correct for all businesses
+  ✓  Every business has all the required properties
+  ✓  The response content type is application.json
+  ┌
+  │ '******* List businesses for owner, Test 6 points = 3'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '******* List businesses for owner total points = 6'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+↳ 7. delete business 204 (0 pts)
+  DELETE http://127.0.0.1:8080/businesses/25 [204 NO CONTENT, 161B, 176ms]
+  ✓  204 no content
+
+↳ 8. delete 2nd business 204 (0 pts)
+  DELETE http://127.0.0.1:8080/businesses/26 [204 NO CONTENT, 161B, 175ms]
+  ✓  204 no content
+
+↳ 9. delete 3rd business 204 (0 pts)
+  DELETE http://127.0.0.1:8080/businesses/27 [204 NO CONTENT, 161B, 180ms]
+  ✓  204 no content
+
+❏ 7. Create a review (8 pts)
+↳ 1. add business  201 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 379B, 219ms]
+  ✓  201 status code
+
+↳ 2. add review 201 (2 pts)
+  POST http://127.0.0.1:8080/reviews [201 CREATED, 353B, 355ms]
+  ✓  201 status code
+  ✓  content is valid
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Create a review Test 2 points = 2'
+  │ '******* Create a review Tests current points = 2'
+  └
+
+↳ 3. add review again 409 (1.5 pts)
+  POST http://127.0.0.1:8080/reviews [409 CONFLICT, 318B, 161ms]
+  ✓  409 status code
+  ✓  409 error message
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Create a review Test 3 points = 1.5'
+  │ '******* Create a review Tests current points = 3.5'
+  └
+
+↳ 4. add review 400 (1 pt)
+  POST http://127.0.0.1:8080/reviews [400 BAD REQUEST, 259B, 4ms]
+  ✓  400 status code
+  ✓  400 error message
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Create a review Test 4 points = 1'
+  │ '******* Create a review Tests current points = 4.5'
+  └
+
+↳ 5. add review invalid business 404 (1.5 pts)
+  POST http://127.0.0.1:8080/reviews [404 NOT FOUND, 230B, 119ms]
+  ✓  404 status code
+  ✓  404 error message
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Create a review Test 5 points = 1.5'
+  │ '******* Create a review Tests current points = 6'
+  └
+
+↳ 6. add review 2 no review_text 201 (2 pts)
+  POST http://127.0.0.1:8080/reviews [201 CREATED, 339B, 334ms]
+  ✓  201 status code
+  3. content is valid
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Create a review Test 6 points = 1'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '******* Create a review Tests Total points = 7'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 8. Get a review (5 pts)
+↳ 1. get review 200 (3 points)
+  GET http://127.0.0.1:8080/reviews/6 [200 OK, 348B, 120ms]
+  ✓  200 status code
+  ✓  content is valid
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Get a review Test 1 points = 3'
+  │ '******* Get a review Tests current points = 3'
+  └
+
+↳ 2. get review 404 (1 pt)
+  GET http://127.0.0.1:8080/reviews/0 [404 NOT FOUND, 226B, 116ms]
+  ✓  404 status code
+  ✓  404 error message
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Get a review Test 2 points = 1'
+  │ '******* Get a review Tests current points = 4'
+  └
+
+↳ 3. get second review 200 (1 points)
+  GET http://127.0.0.1:8080/reviews/7 [200 OK, 334B, 113ms]
+  ✓  200 status code
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Get a review Test 3 points = 1'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '******* Get a review Tests Total points = 5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 9. Edit a review (6 pts)
+↳ 1. edit review (1 point)
+  PUT http://127.0.0.1:8080/reviews/6 [200 OK, 350B, 283ms]
+  ✓  200 status code
+  ✓  content is valid
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Edit a review Test 1 points = 1'
+  │ '******* Edit a review Tests current points = 1'
+  └
+
+↳ 2. get review after update 200 (1.5 pts)
+  GET http://127.0.0.1:8080/reviews/6 [200 OK, 350B, 119ms]
+  ✓  200 status code
+  ✓  content is valid
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Edit a review Test 2 points = 1.5'
+  │ '******* Edit a review Tests current points = 2.5'
+  └
+
+↳ 3. edit review with missing attribute 400 (1 pt)
+  PUT http://127.0.0.1:8080/reviews/6 [400 BAD REQUEST, 259B, 4ms]
+  ✓  400 status code
+  ✓  400 error message
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Edit a review Test 3 points = 1'
+  │ '******* Edit a review Tests current points = 3.5'
+  └
+
+↳ 4. edit review with invalid id 404 (1 pt)
+  PUT http://127.0.0.1:8080/reviews/0 [404 NOT FOUND, 226B, 116ms]
+  ✓  404 not found
+  ✓  404 error message
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Edit a review Test 4 points = 1'
+  │ '******* Edit a review Tests current points = 4.5'
+  └
+
+↳ 5. edit review stars only (1.5 pts)
+  PUT http://127.0.0.1:8080/reviews/6 [200 OK, 350B, 279ms]
+  ✓  200 status code
+  ✓  content is valid
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Edit a review Test 5 points = 1.5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '******* Edit a review Tests Total points = 6'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 10. Delete a review (5 pts)
+↳ 1. delete review 204 (2 pts)
+  DELETE http://127.0.0.1:8080/reviews/6 [204 NO CONTENT, 161B, 174ms]
+  ✓  204 no content
+  ┌
+  │ '******* Delete a review Test 1 points = 2'
+  │ '******* Delete a review Tests current points = 2'
+  └
+
+↳ 2. delete review just deleted 404 (1 pt)
+  DELETE http://127.0.0.1:8080/reviews/6 [404 NOT FOUND, 226B, 168ms]
+  ✓  404 not found
+  ✓  404 error message
+  ┌
+  │ '******* Delete a review Test 2 points = 1'
+  │ '******* Delete a review Tests current points = 3'
+  └
+
+↳ 3. delete business 204 (0 pts)
+  DELETE http://127.0.0.1:8080/businesses/28 [204 NO CONTENT, 161B, 175ms]
+  ✓  204 no content
+
+↳ 4. get second review business deleted 404 (2 pts)
+  GET http://127.0.0.1:8080/reviews/7 [404 NOT FOUND, 226B, 110ms]
+  ✓  404 status code
+  ✓  404 error message
+  ✓  The response content type is application.json
+  ┌
+  │ '******* Delete a review Test 4 points = 2'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '******* Delete a review Tests Total points = 5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 11. List all reviews for user (6 pts)
+↳ 1. add business 201 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 377B, 214ms]
+  ✓  201 status code
+
+↳ 2. add second business 201 (0 pts)
+  POST http://127.0.0.1:8080/businesses [201 CREATED, 375B, 231ms]
+  ✓  201 status code
+
+↳ 3. add review business 1 user 1 (0 pts)
+  POST http://127.0.0.1:8080/reviews [201 CREATED, 353B, 338ms]
+  ✓  201 status code
+
+↳ 4. add review business 2 user 1 (0 pts)
+  POST http://127.0.0.1:8080/reviews [201 CREATED, 353B, 328ms]
+  ✓  201 status code
+
+↳ 5. add review business 2 user 2 (0 pts)
+  POST http://127.0.0.1:8080/reviews [201 CREATED, 355B, 338ms]
+  ✓  201 status code
+
+↳ 6. get reviews for user 1 (6 pts)
+  GET http://127.0.0.1:8080/users/1234/reviews [200 OK, 567B, 111ms]
+  ✓  200 status code
+  ✓  The response content type is application.json
+  ✓  At least 2 reviews for user_id_1 exist
+  ✓  All reviews are for user_id_1
+  ✓  Every reivew has all the required properties
+  ┌
+  │ '******* List all reviews for user Test 6 points = 6'
+  └
+
+↳ 7. delete business 204 (0 pts)
+  DELETE http://127.0.0.1:8080/businesses/29 [204 NO CONTENT, 161B, 166ms]
+  ✓  204 no content
+
+↳ 8. delete second business 204 (0 points)
+  DELETE http://127.0.0.1:8080/businesses/30 [204 NO CONTENT, 161B, 171ms]
+  ✓  204 no content
+  ┌
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '1. Create a business                   Score = 6/6'
+  │ '2. Get a business                      Score = 3/6'
+  │ '3. List all businesses                 Score = 9/9'
+  │ '4. Edit a business                     Score = 5/6'
+  │ '5. Delete a business                   Score = 6/6'
+  │ '6. List businesses for owner           Score = 6/6'
+  │ '7. Create a review                     Score = 7/8'
+  │ '8. Get a review                        Score = 5/5'
+  │ '9. Edit a review                       Score = 6/6'
+  │ '10. Delete a review                    Score = 5/5'
+  │ '11. List all review for user           Score = 6/6'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '******* All Postman Tests                  Score = 64
+  │ /69'
+  └
+
+┌─────────────────────────┬────────────────────┬───────────────────┐
+│                         │           executed │            failed │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│              iterations │                  1 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│                requests │                 63 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│            test-scripts │                114 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│      prerequest-scripts │                 59 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│              assertions │                127 │                 3 │
+├─────────────────────────┴────────────────────┴───────────────────┤
+│ total run duration: 12.9s                                        │
+├──────────────────────────────────────────────────────────────────┤
+│ total data received: 9.95kB (approx)                             │
+├──────────────────────────────────────────────────────────────────┤
+│ average response time: 203ms [min: 3ms, max: 652ms, s.d.: 103ms] │
+└──────────────────────────────────────────────────────────────────┘
+
+[31m  # [39m[31m failure        [39m[31m detail                                                                           [39m
+[90m    [39m[90m                [39m[90m                                                                                  [39m
+ 1.  AssertionError  content is valid                                                                 
+                     expected '78751' to equal 78751                                                  
+                     at assertion:1 in test-script                                                    
+                     inside "2. Get a business (6 pts) / 1. get a business 200 (4 pts)"               
+[90m    [39m[90m                [39m[90m                                                                                  [39m
+ 2.  AssertionError  content is valid                                                                 
+                     expected '78751' to equal 78751                                                  
+                     at assertion:1 in test-script                                                    
+                     inside "4. Edit a business (6 pts) / 2. get business after update 200 (2 pts)"   
+[90m    [39m[90m                [39m[90m                                                                                  [39m
+ 3.  AssertionError  content is valid                                                                 
+                     expected null to equal ''                                                        
+                     at assertion:1 in test-script                                                    
+                     inside "7. Create a review (8 pts) / 6. add review 2 no review_text 201 (2 pts)" 

@@ -108,7 +108,7 @@ def post_businesses():
                 'zip_code': content['zip_code']
             })
             # Get the last inserted id
-            stmt2 = sqlalchemy.text('SELECT LASTVAL()')
+            stmt2 = sqlalchemy.text('SELECT LAST_INSERT_ID()')
             business_id = conn.execute(stmt2).scalar()
             conn.commit()
 
@@ -304,7 +304,7 @@ def post_reviews():
             'review_text': content.get('review_text', None)
         })
         # Get the last inserted id
-        stmt2 = sqlalchemy.text('SELECT LASTVAL()')
+        stmt2 = sqlalchemy.text('SELECT LAST_INSERT_ID()')
         review_id = conn.execute(stmt2).scalar()
         conn.commit()
 
